@@ -89,6 +89,12 @@ class tree{
         
     }
 
+    void TreeLength(node *temp){
+        if(temp == NULL)
+            return 0;
+        return 1 + TreeLength(temp->left) + TreeLength(temp->right);
+    }
+
 };
 
 int main(){ 
@@ -103,5 +109,6 @@ int main(){
     obj.postorder(obj.root);
     cout<<endl<<"LEVEL ORDER"<<endl;
     obj.levelOrder(obj.root);
+    cout<<"no of nodes:"<<obj.TreeLength();
     return 0;
 }

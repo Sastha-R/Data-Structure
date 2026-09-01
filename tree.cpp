@@ -61,17 +61,47 @@ class tree{
         cout<<temp->data<<" ";
     }
 
+    void levelOrder(node *temp){
+        if (temp == NULL)
+            return;
+        
+
+        int f = 0, r = 0;
+        node *q[100];
+         q[r++] = temp;
+        while (f < r)
+        {
+            temp = q[f++];
+
+            cout<<temp->data<<" ";
+            
+            if(temp->left != NULL)
+            {
+                q[r++] = temp->left;
+            }
+
+            if (temp->right != NULL)
+            {
+                q[r++] = temp->right;
+            }
+            
+        }
+        
+    }
+
 };
 
 int main(){ 
 
     tree obj;
     obj.insert();
-    cout<<"INORDER"<<endl;
+    cout<<"IN ORDER"<<endl;
     obj.inorder(obj.root);
-    cout<<endl<<"PREORDER"<<endl;
+    cout<<endl<<"PRE ORDER"<<endl;
     obj.preorder(obj.root);
-    cout<<endl<<"POSTORDER"<<endl;
+    cout<<endl<<"POST ORDER"<<endl;
     obj.postorder(obj.root);
+    cout<<endl<<"LEVEL ORDER"<<endl;
+    obj.levelOrder(obj.root);
     return 0;
 }

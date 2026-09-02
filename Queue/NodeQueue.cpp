@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -7,11 +8,11 @@ public:
     Node *next;
 };
 
-class Stack {
+class Queue {
 public:
     Node *head;
 
-    Stack() {
+    Queue() {
         head = NULL;
     }
 
@@ -36,27 +37,16 @@ public:
         }
     }
 
-    void deleteAtEnd() {
+    void deleteAtBegin() {
 
         if (head == NULL) {
-            cout << "Stack is empty\n";
-            return;
-        }
-
-        if (head->next == NULL) {
-            head = NULL;
+            cout << "Queue is empty\n";
             return;
         }
 
         Node *temp = head;
-        Node *prev = NULL;
 
-        while (temp->next != NULL) {
-            prev = temp;
-            temp = temp->next;
-        }
-
-        prev->next = NULL;
+        head = head->next;
 
         cout << "Deleted\n";
     }
@@ -65,7 +55,7 @@ public:
         Node *temp = head;
 
         if (head == NULL) {
-            cout << "Stack is empty\n";
+            cout << "Queue is empty\n";
             return;
         }
 
@@ -75,36 +65,29 @@ public:
         }
     }
 
-    void top(){
-        Node *temp = head;
+    void front() {
 
-        if (head ==NULL)
-        {
-            cout<<"stack is empty";
+        if (head == NULL) {
+            cout << "Queue is empty";
             return;
         }
 
-        while (temp->next != NULL)
-        {
-            temp = temp->next;
-        }
-
-        cout<<temp->data;
+        cout << "Front element: " << head->data;
     }
 
 };
 
 int main() {
 
-    Stack s;
+    Queue q;
     int choice;
 
     do {
-        cout << "\n1. Insert\n";
-        cout << "2. Delete\n";
+        cout << "\n1. Enqueue\n";
+        cout << "2. Dequeue\n";
         cout << "3. Display\n";
         cout << "4. Exit\n";
-        cout<<"5.top element";
+        cout << "5. Front element\n";
 
         cout << "Enter your choice: ";
         cin >> choice;
@@ -112,23 +95,23 @@ int main() {
         switch (choice) {
 
         case 1:
-            s.insertAtEnd();
+            q.insertAtEnd();
             break;
 
         case 2:
-            s.deleteAtEnd();
+            q.deleteAtBegin();
             break;
 
         case 3:
-            s.display();
+            q.display();
             break;
 
         case 4:
             cout << "Exited\n";
             break;
-        
+
         case 5:
-            s.top();
+            q.front();
             break;
 
         default:
@@ -139,3 +122,4 @@ int main() {
 
     return 0;
 }
+
